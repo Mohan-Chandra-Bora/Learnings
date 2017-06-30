@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+   
+   
+    <link id='fabric_css' rel='stylesheet' href='' type='text/css'>
+
+
+</head>
+<body>
+    <h1>Office UI Fabric Playground</h1>
+    <p>
+        Provided by Sector 43 Software as part of the 
+        <a href='http://www.sector43.com/pluralsight-training-videos/' target='_blank' >
+        Office UI Fabric training courses</a> from <b>Sector 43 Software</b> and Pluralsight. 
+    </p>
+Select version of Fabric to load:
+<select id='fabric_ver'>
+	<option value=''>--- SELECT ---</option>
+    <option value='1.0'>1.0</option>
+    <option value='1.1.0'>1.1.0</option>
+    <option value='1.1.1'>1.1.1</option>
+    <option value='1.1.2'>1.1.2</option>
+    <option value='1.1.3'>1.1.3</option>
+    <option value='1.2.0'>1.2.0</option>
+    <option value='1.2.1'>1.2.1</option>
+    <option value='2.0'>2.0</option>
+    <option value='2.0.1'>2.0.1</option>
+    <option value='2.2.0'>2.2.0</option>
+    <option value='2.3.0'>2.3.0</option>
+    <option value='2.4.0'>2.4.0</option>
+    <option value='2.4.1'>2.4.1</option>
+    <option value='2.5.0'>2.5.0</option>
+    <option value='2.6.0'>2.6.0</option>
+    <option value='2.6.1'>2.6.1</option>
+    <option value='3.0.0'>3.0.0</option>
+    <option value='3.1.0'>3.1.0</option>
+    <option value='4.0.0'>4.0.0</option>
+    <option value='4.1.0'>4.1.0</option>
+</select>
+
+&nbsp;&nbsp;Loaded Fabric Version: <span id='loadedFabVer'>None</span>
+
+<p>
+    For information on using and extending this tool (including adding newer versions of Fabric), please see the <a href='https://github.com/Sector43/FabricExplorer/blob/master/release-notes.md' target='_blank'>Release Notes</a>
+</p>
+<hr />
+<hr />
+
+<h4>Fonts, Background and Border Colors</h4>
+<span style="border-style:solid; border-width:1px; ">This is some text.  Feel free to change the Font Size, Color and Weight, as well as the background color and border color.</span>
+<br />
+<br />
+
+
+
+<h4>Icons</h4>
+Specify a custom Icon class for this icon: <i class="ms-Icon ms-Icon--Mail" aria-hidden="true"></i>
+<br /><br />
+<b><u>NOTE</u>:</b> You must make sure that in the Elements tab in the Chrome Dev Tools that you have the <u>&lt;i&gt;</u> element selected and not the <u>::before</u> element
+<br />
+
+<h4>Grid</h4>
+Assign new Grid classes to the following table.  To really explore the possibilities of the Responsive Grid in Fabric, 
+you may need to edit the HTML of the page to add/remove columns and rows.  This is just a basic example.
+<style type='text/css'>
+.ms-Grid-col{
+    color:white;
+    background-color:silver; 
+    border: 1px solid white;   
+}
+</style>
+<div class="ms-Grid"> 
+  <div class="ms-Grid-row">
+    <div class="ms-Grid-col ms-u-sm4 ms-u-md2 ms-u-lg2">A</div>
+    <div class="ms-Grid-col ms-u-sm4 ms-u-md2 ms-u-lg4">B</div>
+    <div class="ms-Grid-col ms-u-sm4 ms-u-md8 ms-u-lg6">C</div>
+  </div>
+</div>
+
+
+
+<script src="FabricPlayground.js"></script>
+    
+
+    
+</script>
+
+</body>
+</html>

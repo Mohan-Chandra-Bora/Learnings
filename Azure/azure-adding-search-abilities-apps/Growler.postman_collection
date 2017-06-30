@@ -1,0 +1,3212 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Growler",
+		"_postman_id": "3c75f747-beaf-e613-fbaa-03fe77d77b3b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Module 2 - Managing Search Indexes",
+			"description": "This directory contains the REST calls that demonstrate\nhow to manage search indexes in Azure Search.",
+			"item": [
+				{
+					"name": "01 - Create Search Index - Beers",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"beers\",\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" } \n  ]\n}"
+						},
+						"description": "This request creates the `beers` search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "02 - GET Metadata",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes('beers')/$metadata?api-version=2015-02-28#docs(id,name,activelyBrewed,ibu,abv,flavors,lastTappedOn,breweryId,breweryName,breweryLocation)",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Update Search Index - Add Other Fields",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" },\n    { \"name\":\"averageRating\", \"type\":\"Edm.Double\" }\n  ]\n}"
+						},
+						"description": "This request demonstrates updating the `beers` search index by adding fields of other data types.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Create Search Index via PUT",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/unfound-index?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ]\n}"
+						},
+						"description": "This request demonstrates that search index' can be created via the PUT method.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Update Search Index - Add Other Fields",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"description\", \"type\":\"Edm.String\" },\n    { \"name\":\"slogan\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryType\", \"type\":\"Edm.String\" },\n    { \"name\":\"location\", \"type\":\"Edm.GeographyPoint\" }\n  ]\n}"
+						},
+						"description": "This request demonstrates updating the `breweries` search index by adding fields of other data types.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Update Search Index - Add CORS to Ecofic",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"description\", \"type\":\"Edm.String\" },\n    { \"name\":\"slogan\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryType\", \"type\":\"Edm.String\" },\n    { \"name\":\"location\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"corsOptions\": {\n      \"allowedOrigins\": [ \"http://www.ecofic.com\" ]\n  }\n}"
+						},
+						"description": "This request demonstrates updating the `breweries` search index `corsOptions`. Specifically, this request shows ow to limit access to a specific domain.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "07 - Update Search Index - Add CORS for all domains",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"description\", \"type\":\"Edm.String\" },\n    { \"name\":\"slogan\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryType\", \"type\":\"Edm.String\" },\n    { \"name\":\"location\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"corsOptions\": {\n      \"allowedOrigins\": [ \"*\" ]\n  }\n}"
+						},
+						"description": "This request demonstrates updating the `breweries` search index `corsOptions`. Specifically, this request shows how to allow all domains. \n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "08 - List Search Indexes",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows how to list the search indexes in a search service.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "09 - List Search Index",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows how to list a single search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "10 - List Search Index - Absent Index",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/absent-index?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows the error message returned by Azure Search if an index isn't found.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "11 - Create Search Index - SkunkyBeers",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"skunky-beers\",\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" } \n  ]\n}"
+						},
+						"description": "This request creates the `skunky-beers` search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "12 - Delete a Search Index",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/skunky-beers?api-version=2015-02-28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows how to delete a single search index. For this demonstration, we'll remove the `skunky-beers` index that was created in the previous request.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "13 - Delete a Non Existent Search Index",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/unfound-index?api-version=2015-02-28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows what happens when you try to delete a search index that does not exist.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 3 - Managing Search Documents",
+			"description": "This directory contains the REST calls that demonstrate\nhow to manage search documents in Azure Search indexes.",
+			"item": [
+				{
+					"name": "01 - Create Search Document - Breweries",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"1\",\n      \"name\":\"Frozen Brews\",\n      \"slogan\":\"Redefining crisp and cold\",\n      \"description\":\"Located at the South Pole, this is the only brewery Santa Claus thinks of visiting after sniffing reindeer rear while truckin' around the globe.\",\n      \"breweryType\":\"micro\",\n      \"location\": { \"type\": \"Point\", \"coordinates\": [90.000000, 0.000000] }\n    }\n  ]\n}"
+						},
+						"description": "This request creates a `breweries` entry that we can search on.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Read Index Search Documents",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows how to read all search documents from a search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Delete Search Document",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"delete\",\n      \"id\":\"1\"\n    }\n  ]\n}"
+						},
+						"description": "This request demos deleting a search document from an Azure Search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Update Search Document",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"2\",      \n      \"name\":\"Another Brewery name\",\n      \"slogan\":\"Good times happen after hours\",\n      \"description\":\"This brewery located in upstate new york\",\n      \"breweryType\":\"nano\",\n      \"location\": { \"type\": \"Point\", \"coordinates\": [42.293564, -74.20166] }\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates updating a search document in an Azure Search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Merge Search Document",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"merge\",\n      \"id\":\"2\",      \n      \"averageRating\":3.5\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates using the `merge` action with a search document in an Azure Search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Delete Document Data via a Merge",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"merge\",\n      \"id\":\"2\",      \n      \"abv\":null\n    }\n  ]\n}"
+						},
+						"description": "This request shows how to use the `merge` action to remove some document data.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "07 - Merge Non-Existent Search Document",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"merge\",\n      \"id\":\"19573594\",      \n      \"abv\":3.5\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates attempting to use the `merge` action with a search document that does not exist.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "08 - Read a Search Document",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/19?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows how to read a single search document.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "10 - Read a Search Document with a non-numeric key",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/b3TplPdS?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows how to read a single search document. Specifically, this request uses a non-numeric key.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "11 - Read a Search Document with a non-existant key",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/b3TplPdT?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request shows what happens when you search for a document with a specific key, and that key isn't used.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "12 - Read a Search Document with `select` *",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/19?$select=*&api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "This request shows what happens when you search for a document using `select` *\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "13 - Read a Search Document with `select` for specific fields.",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/19?$select=name,breweryName&api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "This request shows how to select specific fields.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 4 - Executing Searches",
+			"description": "This module will shows how to execute searches against the `beer` and `brewery` indexes that were \ncreated in the past two modules.",
+			"item": [
+				{
+					"name": "01 - Execute a Query",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs?api-version=2015-02-28",
+						"method": "GET",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request executes the most basic query possible against an Azure Search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Execute a Query with Search Parameter",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"I*\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index. This query adds the `search` parameter to refine our search results.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Execute a Query Showing Case Indifference",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"i*\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query adds the `search` parameter to refine our search results. It uses a lowercase \"i\" to demonstrate that the `search` parameter does not care about case.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Execute a Keyword Search",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis is intended to show the keyword search abilities of a simple query.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Beers that start with \"L\"",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"L*\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis is intended to get a list of \"Beers\" that start with \"L\".\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Search beers with \"*\"",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis is intended to run a search against the `beer` index using just \"*\".\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "07 - OR Operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"porter | stout\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show the OR (|) operator in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "08 - OR Operator shortcut",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"porter stout\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show the shortcut version of the OR operator.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "09 - AND Operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"pale + ale\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show the AND (+) operator in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "10 - Phrase Operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"\\\"pale ale\\\"\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show the Phrase operator (\") in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "11 - Operator Precedence Example A",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"m* + p* | s*\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to be the first part in showing the impact of operator precedence.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "12 - Operator Precedence Example B",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"m* | p* + s*\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to be the second part in showing the impact of operator precedence.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "13 - NOT Operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"-stout\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show the NOT operator (-) in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "14 - Mixing operators",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"-(porter|stout)\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show multiple operators used at once.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "15 - NOT Operator Example B",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"-pale ale\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the NOT operator (-) in a different context. \n\nThere should be 17 results returned.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "16 - SearchMode set to \"all\"",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"ale\",\n  \"searchMode\":\"all\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `searchMode` parameter set to the \"all\" option.\n\nThere should be 3 results returned.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "17 - Full Query with ? Wildcard",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"A?e\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the '?' wildcard in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "18 - Full Query with * Wildcard",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"P*e\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the '*' wildcard in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "19 - Full Query with AND operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"pale && ale\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the AND operator (&&) in action.\n\nThree results should be returned.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "20 - Full Query with Plus operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"+pale +ale\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the Plus operator (+) in action.\n\nThree results should be returned.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "21 - Full Query with Simple Plus operator usage",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"pale + ale\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the Plus operator (+) used like its simple query syntax equivalent.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "22 - Full Query with NOT operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"stout -chocolate\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the NOT operator (-).\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "23 - Full Query with Alternative NOT operator",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"stout !chocolate\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the alterative NOT operator (!).\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "24 - Full Query with Field-Level Query",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"name:porter\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows a field-level query.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "25 - Full Query with More Complex Field-Level Query",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"name:(porter|stout)\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows a more complex field-level query.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "26 - Full Query with Multi-Field Query",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"((name:(porter|stout)) AND (breweryName:\\\"North American Brewco\\\"))\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name, breweryName\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows a multi-field query.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "27 - Full Query without Fuzzy Search",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Puckwudgie\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. This search returns zero results. This query is intended to complement the next query. It shows how a missing \"~\" can throw a search off. This query is basically the \"before\" in a \"before-and-after\".\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "28 - Full Query with Fuzzy Search",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Puckwudgie~\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the fuzzy search option in use.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "29 - Full Query with Fuzzy Search with more distance",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Puckwudgie~2\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the fuzzy search option in use.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "30 - Full Query with Proximity Search",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"\\\"Chocolate Stout\\\"~1\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the proximity search option in use.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "31 - Full Query with Proximity Search - Sample B",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"\\\"Chocolate Stout\\\"~0\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the proximity search option in use.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "32 - Full Query with Term Boost Search",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"pale^2 ale\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the term boost search option in use.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "33 - Full Query with Term Boost Search using multiple operators.",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"\\\"pale ale\\\"^2\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows the term search option in use with multiple operators at once.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "34 - Full Query with Regular Expression (contains)",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"name:/.*col.*/\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows a regular expression in use.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "35 - Full Query with Regular Expression (endsWith)",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"name:/.*er/\",\n  \"queryType\":\"full\",\n  \"select\":\"id, name\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `queryType` parameter set to the \"full\" option. It shows a regular expression for \"endsWith\" in action. This version of ends with looks for TERMS that end with \"late\".\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "36 - count Property",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"p*\",\n  \"select\":\"id, name\",\n  \"count\":true\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query shows the `count` parameter in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 5 - Filtering and Scoring Results",
+			"description": "",
+			"item": [
+				{
+					"name": "01 - Run a query that includes a filter.",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"filter\":\"ibu lt 75.0\",\n  \"select\":\"id, name, ibu\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show a filter in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Run a query that includes an \"Any\" filter",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"filter\":\"flavors/any(f: f eq 'chocolate')\",\n  \"select\":\"id, name, flavors\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show a filter that uses the \"Any\" lambda operator.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Run a query that includes an \"All\" filter",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"filter\":\"flavors/all(f: f ne 'smokey')\",\n  \"select\":\"id, name, flavors\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show a filter that uses the \"All\" lambda operator.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Run a query that filters by distance",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"filter\":\"geo.distance(location, geography'POINT(-86.15806800000001 39.768403)') le 16.0934\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show a distance filter.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Run a query that filters to results in a Geofence",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"filter\":\"geo.intersects(location, geography'POLYGON((\n    -86.154099 39.749434, \n    -86.091614 39.815920, \n    -86.156845 39.846504, \n    -86.201477 39.813811, \n    -86.154099 39.749434))')\",\n  \"select\":\"id, name, location\"\n}"
+						},
+						"description": "This request executes a query against an Azure Search index.\n\nThis query is intended to show results within a geofence.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Add a Scoring Profile ",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [\n    {\n      \"name\": \"id\",\n      \"type\": \"Edm.String\",\n      \"searchable\": true,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": true,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"name\",\n      \"type\": \"Edm.String\",\n      \"searchable\": true,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": \"en.microsoft\"\n    },\n    {\n      \"name\": \"activelyBrewed\",\n      \"type\": \"Edm.Boolean\",\n      \"searchable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"ibu\",\n      \"type\": \"Edm.Int32\",\n      \"searchable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"abv\",\n      \"type\": \"Edm.Double\",\n      \"searchable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"averageRating\",\n      \"type\": \"Edm.Double\",\n      \"searchable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"flavors\",\n      \"type\": \"Collection(Edm.String)\",\n      \"searchable\": true,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": false,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"lastTappedOn\",\n      \"type\": \"Edm.DateTimeOffset\",\n      \"searchable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"breweryId\",\n      \"type\": \"Edm.String\",\n      \"searchable\": true,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": null\n    },\n    {\n      \"name\": \"breweryName\",\n      \"type\": \"Edm.String\",\n      \"searchable\": true,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": true,\n      \"key\": false,\n      \"analyzer\": \"en.microsoft\"\n    },\n    {\n      \"name\": \"breweryLocation\",\n      \"type\": \"Edm.GeographyPoint\",\n      \"searchable\": false,\n      \"filterable\": true,\n      \"retrievable\": true,\n      \"sortable\": true,\n      \"facetable\": false,\n      \"key\": false,\n      \"analyzer\": null\n    }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"breweryName\",\n      \"text\": {\n          \"weights\": {\n            \"breweryName\":5\n          }\n      }\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates how to add a basic scoring profile.\n\nThis scoring profile gives the beer name the higher precedent.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "07 - Using a Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"North\",\n  \"count\":true,\n  \"select\":\"name, breweryName\",\n  \"scoringProfile\":\"breweryName\"\n}"
+						},
+						"description": "This query is used to demonstrate a search for the term \"North\" using the `breweryName` scoring profile.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "08 - Add Weighted Scoring Profile with multiple fields",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"beerName\",\n      \"text\": {\n          \"weights\": {\n            \"name\":5,\n            \"breweryName\":2.5\n          }\n      }\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses weighted text.\n\nIt makes the beer name the higher precedent.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "09 - Run Query with no scoring profile set.",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"select\":\"name,abv\"\n}"
+						},
+						"description": "This is an example of a query using no scoring profile.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "10 - Add Magnitude Scoring Profile - Start Query",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"abv\",\n      \"functions\": [\n          {\n              \"type\":\"magnitude\",\n              \"fieldName\":\"abv\",\n              \"boost\": 2.5,\n              \"magnitude\": {\n                  \"boostingRangeStart\":0,\n                  \"boostingRangeEnd\":100\n              }\n          }\n      ]\n    }\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "11 - Run Query with Magnitude scoring profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"scoringProfile\":\"abv\",\n  \"select\":\"name,abv\"\n}"
+						},
+						"description": "This is an example of a query that uses the magnitude scoring profile. In order for this request to work, the `abv` scoring profile must be part of the `beers` search index. That scoring profile is setup in the previous request.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "12 - Add Magnitude Scoring Profile with Inverted Range",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"abv\",\n      \"functions\": [\n        {\n          \"type\": \"magnitude\",\n          \"fieldName\": \"abv\",\n          \"boost\": 10,\n          \"magnitude\": {\n            \"boostingRangeStart\": 100,\n            \"boostingRangeEnd\": 0\n            }\n        }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `magnitude` function. This specific example shows an inverted range in action.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "13 - Run Query with an inverted Magnitude scoring profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"scoringProfile\":\"abv\"\n}"
+						},
+						"description": "This is an example of a query that uses an inverted magnitude scoring profile. In order for this request to work, the `abv` scoring profile must be part of the `beers` search index. That scoring profile is setup in the previous request.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "14 - Add Magnitude Scoring Profile for Unknown Range",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"bitterBeers\",\n      \"functions\": [\n        {\n          \"type\": \"magnitude\",\n          \"fieldName\": \"ibu\",\n          \"boost\": 10,\n          \"magnitude\": {\n            \"boostingRangeStart\": 50,\n            \"boostingRangeEnd\": 75,\n            \"constantBoostBeyondRange\": true\n            }\n          }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `magnitude` function. This specific example uses the `constantBoostBeyondRange` flag.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "15 - Run Query with Magnitude Scoring Function using constantBoostBeyondRang",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"scoringProfile\":\"bitterBeers\"\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `magnitude` scoring function that uses the `constantBoostBeyondRange` parameter. This example demonstrates a query against that kind of scoring function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "16 - Add Freshness Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"freshBeers\",\n      \"functions\": [\n        {\n          \"type\": \"freshness\",\n          \"fieldName\": \"lastTappedOn\",\n          \"boost\": 10,\n          \"freshness\": {\n            \"boostingDuration\": \"P90D\"\n          }\n        }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `freshness` function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "17 - Run Query with Freshness Scoring Function - Promotes \"fresher\" data",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"scoringProfile\":\"freshBeers\"\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `freshness` scoring function. This example demonstrates a query against that kind of scoring function. It promotes \"fresher\" beers.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "18 - Add Freshness Scoring Profile - Promoting Future Information",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"tapTakeover\",\n      \"functions\": [\n        {\n          \"type\": \"freshness\",\n          \"fieldName\": \"lastTappedOn\",\n          \"boost\": 10,\n          \"freshness\": {\n            \"boostingDuration\": \"-P60D\"\n          }\n        }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `freshness` function. This specific example demonstrates how to promote future information.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "19 - Run Query with Freshness Scoring Function - Promotes \"future\" data",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"scoringProfile\":\"freshBeers\"\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `freshness` scoring function. This example demonstrates a query against that kind of scoring function. It promotes \"future\" beers.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "20 - Add Freshness Scoring Profile - Promoting Older Values",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"skunkyBeers\",\n      \"functions\": [\n        {\n          \"type\": \"freshness\",\n          \"fieldName\": \"lastTappedOn\",\n          \"boost\": 0.5,\n          \"freshness\": {\n            \"boostingDuration\": \"P30D\"\n          }\n        }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `freshness` function. This specific example demonstrates how to promote older dates within the range.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "21 - Run Query with Freshness Scoring Function - Promotes older data",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"scoringProfile\":\"skunkyBeers\"\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `freshness` scoring function. This example demonstrates a query against that kind of scoring function. It promotes \"older\", or \"skunky\" beers.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "22 - Add Distance Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"nearestBeers\",\n      \"functions\": [\n        {\n          \"type\": \"distance\",\n          \"fieldName\": \"breweryLocation\",\n          \"boost\": 10,\n          \"distance\": {\n            \"referencePointParameter\":\"myLocation\",\n            \"boostingDistance\":8.04672\n          }\n        }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `distance` function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "23 - Run Query with Distance Scoring Function",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"scoringProfile\":\"nearestBeers\",\n  \"scoringParameters\":[\"myLocation:-86.15806800000001,39.768403\"]\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `distance` scoring function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "24 - Add Tag Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"preferredFlavors\",\n      \"functions\": [\n        {\n          \"type\": \"tag\",\n          \"fieldName\": \"flavors\",\n          \"boost\": 10,\n          \"tag\": {\n              \"tagsParameter\":\"myBelovedFlavors\"\n          }\n        }          \n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses the `tag` function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "25 - Run Query with Tag Scoring Function with Single Tag",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"scoringProfile\":\"preferredFlavors\",\n  \"scoringParameters\":[\"myBelovedFlavors:pine\"]\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `tag` scoring function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "26 - Run Query with Tag Scoring Function with Multiple Tags",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"scoringProfile\":\"preferredFlavors\",\n  \"scoringParameters\":[\"myBelovedFlavors:pine,honey\"]\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with a `tag` scoring function. This example boosts multiple tags.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "27 - Add Multi-Scoring Function Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"myPreferredBeers\",\n      \"functions\": [\n        {\n          \"type\": \"tag\",\n          \"fieldName\": \"flavors\",\n          \"boost\": 9,\n          \"tag\": {\n              \"tagsParameter\":\"myBelovedFlavors\"\n          }\n        },\n        {\n          \"type\": \"distance\",\n          \"fieldName\": \"breweryLocation\",\n          \"boost\": 3,\n          \"distance\": {\n            \"referencePointParameter\":\"myLocation\",\n            \"boostingDistance\":160.934\n          }\n        },\n        {\n          \"type\": \"magnitude\",\n          \"fieldName\": \"abv\",\n          \"boost\": 6,\n          \"magnitude\": {\n            \"boostingRangeStart\": 100,\n            \"boostingRangeEnd\": 0\n          }\n        }\n      ]\n    }\n  ]\n}"
+						},
+						"description": "This request demonstrates adding a scoring profile that uses multiple scoring functions at once.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "28 - Run Query with Multi-Function Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"scoringProfile\":\"myPreferredBeers\",\n  \"scoringParameters\":[\"myBelovedFlavors:chocolate\", \"myLocation:-86.15806800000001,39.768403\"]\n}"
+						},
+						"description": "This is an example of a query using a scoring profile with has multiple scoring functions.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "29 - Add a Default Scoring Profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "PUT",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"scoringProfiles\": [ \n    {\n      \"name\":\"beerName\",\n      \"text\": {\n          \"weights\": {\n            \"name\":5\n          }\n      }\n    }\n  ],\n  \"defaultScoringProfile\":\"beerName\"\n}"
+						},
+						"description": "This request demonstrates how to set a default scoring profile.\n\nThis scoring profile gives the beer name the higher precedent.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "30 - Run Query using the default scoring profile",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\"\n}"
+						},
+						"description": "This is an example of a query using a default scoring profile.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Module 6 - Navigating Search Results",
+			"description": "",
+			"item": [
+				{
+					"name": "01 - Run Query with a sort",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"orderby\":\"name\"\n}"
+						},
+						"description": "This is an example of a query using a sort.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Run Query, Sort by Distance",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"orderby\": \"geo.distance(breweryLocation, geography'POINT(-86.15806800000001 39.768403)')\"\n}"
+						},
+						"description": "This is an example of a query using a sort. This example shows how to sort results by distance using the `geo.distance` function.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Run Query, Sort in Descending Order",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"orderby\":\"name desc\"\n}"
+						},
+						"description": "This is an example of a query using a sort. This example shows how to sort by a single field, in descending order.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Run Query, Sort in Ascending Order",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"orderby\":\"name asc\"\n}"
+						},
+						"description": "This is an example of a query using a sort. This example shows how to sort by a single field, in ascending order.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Run Query, Sort by Multiple Fields",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"orderby\":\"geo.distance(breweryLocation, geography'POINT(-86.15806800000001 39.768403)'), abv desc\"\n}"
+						},
+						"description": "This is an example of a query using a sort. This example shows how to sort results by multiple fields.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Query for comparing Scoring vs Sorting",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale\",\n  \"select\":\"name, abv\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "07 - Query with `top`",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"count\":\"true\",\n  \"select\":\"name\",\n  \"top\":5\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "08- Query with `skip`",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"count\":\"true\",\n  \"select\":\"name\",\n  \"top\":5,\n  \"skip\":5\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "09 - Query with a facet",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\"breweryName\"]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "10 - Query with multiple facets",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\"breweryName\", \"abv\", \"lastTappedOn\"]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "11 - Query with dynamically ranged number facets",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName\", \n      \"abv,values:3.5|7\",\n      \"lastTappedOn\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "12 - Query with dynamically ranged date facets",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName\", \n      \"abv,values:3.5|7\",\n      \"lastTappedOn,values:2016-01-01T00:00:00Z|2016-03-01T00:00:00Z\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "13 - Query with dynamically ranged numeric facets by interval",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName\", \n      \"abv,interval:4\",\n      \"lastTappedOn,values:2016-01-01T00:00:00Z|2016-03-01T00:00:00Z\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "14 - Query with dynamically ranged date facets by interval",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"lastTappedOn,interval:month\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "15 - Query with dynamically ranged date facets - sort by values",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName,sort:value\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "16 - Query with dynamically ranged date facets - sort by values in descending order",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName,sort:-value\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "17 - Query with dynamically ranged date facets - sort by count",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName,sort:count\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "18 - Query with dynamically ranged date facets - sort by count in descending order",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName,sort:-count\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "19 - Query with dynamically ranged date facets - limit the number of facet results",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"*\",\n  \"facets\":[\n      \"breweryName,sort:count,count:3\"\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "20 - Highlight one field",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"North\",\n  \"highlight\":\"name\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "21 - Highlight multiple fields",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"North\",\n  \"highlight\":\"name,breweryName\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "22 - `HighlightPreTag` and `HighlightPostTag`",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/search?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"North\",\n  \"highlight\":\"name\",\n  \"highlightPreTag\": \"<span style='background-color:orange;'>\",\n  \"highlightPostTag\": \"</span>\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "23 - Add Search Suggester",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"suggesters\": [\n    {\n      \"name\":\"beerSuggestions\",\n      \"sourceFields\": [\"name\", \"breweryName\" ]\n    }\n  ]\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "24 - Request Search Suggestions",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"Ale*\",\n  \"suggesterName\":\"beerSuggestions\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "25 - Request Search Suggestions with matches in multiple fields",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"north\",\n  \"suggesterName\":\"beerSuggestions\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "26 - Request Search Suggestions with `searchFields`",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"north\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"searchFields\": \"name\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "27 - Request Search Suggestions with `fuzzy`",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"nrth\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"fuzzy\":true\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "28 - Request Search Suggestions with `fuzzy` turned off",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"nrth\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"fuzzy\":false\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "29 - Request Search Suggestions with `select` statement.",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"north\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"select\":\"name, breweryName, abv, ibu\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "30 - Request Search Suggestions with `top` statement",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"north\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"select\":\"name, breweryName, abv, ibu\",\n  \"top\":3\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "31 - Request Search Suggestions and 'orderby' beer name",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"north\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"select\":\"name, breweryName, abv, ibu\",\n  \"top\":10,\n  \"orderby\":\"name desc\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "32 - Request Search Suggestions and 'orderby' beer name in descending order",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/suggest?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"search\":\"north\",\n  \"suggesterName\":\"beerSuggestions\",\n  \"select\":\"name, breweryName, abv, ibu\",\n  \"top\":10,\n  \"orderby\":\"name\"\n}"
+						},
+						"description": "NOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "z - Complete Beer Search Engine Definitions",
+			"description": "The requests in this directory contain a completed version of the beer search service. These requests are the composites of the scripts used throughout the rest of this course.",
+			"item": [
+				{
+					"name": "01 - Delete Beers",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers?api-version=2015-02-28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request removes the `beers` search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "02 - Delete Breweries",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries?api-version=2015-02-28",
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"description": "This request removes the `breweries` search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "03 - Create Breweries Search Index",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"breweries\",\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\", \"analyzer\":\"en.microsoft\" },\n    { \"name\":\"description\", \"type\":\"Edm.String\", \"analyzer\":\"en.microsoft\" },\n    { \"name\":\"slogan\", \"type\":\"Edm.String\", \"analyzer\":\"en.microsoft\" },\n    { \"name\":\"breweryType\", \"type\":\"Edm.String\" },\n    { \"name\":\"location\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"corsOptions\": {\n      \"allowedOrigins\": [\"*\"]\n  },\n  \"suggesters\": [\n    {\n      \"name\":\"brewerySuggestions\",\n      \"sourceFields\": [\"name\" ]\n    }\n  ]  \n}"
+						},
+						"description": "This request creates the `breweries` search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "04 - Create Beers Search Index",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"beers\",\n  \"fields\": [ \n    { \"name\":\"id\", \"type\":\"Edm.String\", \"key\": true  },  \n    { \"name\":\"name\", \"type\":\"Edm.String\", \"analyzer\":\"en.microsoft\" },\n    { \"name\":\"activelyBrewed\", \"type\":\"Edm.Boolean\" },\n    { \"name\":\"ibu\", \"type\":\"Edm.Int32\" },\n    { \"name\":\"abv\", \"type\":\"Edm.Double\" },\n    { \"name\":\"averageRating\", \"type\":\"Edm.Double\" },\n    { \"name\":\"flavors\", \"type\":\"Collection(Edm.String)\" },\n    { \"name\":\"lastTappedOn\", \"type\":\"Edm.DateTimeOffset\" },\n    { \"name\":\"breweryId\", \"type\":\"Edm.String\" },\n    { \"name\":\"breweryName\", \"type\":\"Edm.String\", \"analyzer\":\"en.microsoft\" },\n    { \"name\":\"breweryLocation\", \"type\":\"Edm.GeographyPoint\" }\n  ],\n  \"corsOptions\": {\n      \"allowedOrigins\": [\"*\"]\n  },\n  \"suggesters\": [\n    {\n      \"name\":\"beerSuggestions\",\n      \"sourceFields\": [\"name\", \"breweryName\" ]\n    }\n  ]  \n}"
+						},
+						"description": "This request creates the `beers` search index.\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "05 - Populate Breweries",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/breweries/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"Ek4mwsBoe\",\n      \"name\":\"Southern Hemisphere Brewco\",\n      \"slogan\":\"\",\n      \"description\":\"\",\n      \"breweryType\":\"micro\",\n      \"location\": { \"type\": \"Point\", \"coordinates\": [-86.149979, 39.923429] }\n    },\n    {\n      \"@search.action\": \"upload\",\n      \"id\":\"b3TplPdS\",\n      \"name\":\"Northern Hemisphere Brewco\",\n      \"slogan\":\"\",\n      \"description\":\"\",\n      \"breweryType\":\"farm\",\n      \"location\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    {\n      \"@search.action\": \"upload\",\n      \"id\":\"VkNvPjBse\",\n      \"name\":\"Oceanic Brewco\",\n      \"slogan\":\"\",\n      \"description\":\"\",\n      \"breweryType\":\"nano\",\n      \"location\": { \"type\": \"Point\", \"coordinates\": [-86.157746, 39.824688] }\n    },\n    {\n      \"@search.action\": \"upload\",\n      \"id\":\"zkXBTiBol\",\n      \"name\":\"North American Brewco\",\n      \"slogan\":\"\",\n      \"description\":\"\",\n      \"breweryType\":\"micro\",\n      \"location\": { \"type\": \"Point\", \"coordinates\": [-86.034279, 39.835432] }\n    }\n ]\n}"
+						},
+						"description": "This request will populate the breweries search index. This should only be used after creating the breweries search index in module 1\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				},
+				{
+					"name": "06 - Populate Beers",
+					"request": {
+						"url": "https://ecofic-growler-dev.search.windows.net/indexes/beers/docs/index?api-version=2015-02-28",
+						"method": "POST",
+						"header": [
+							{
+								"key": "api-key",
+								"value": "D71CECC93600E296532BDA6DAECD1687",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"value\": [\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"1\",\n      \"name\":\"Ahool Ale\",\n      \"activelyBrewed\":true,\n      \"ibu\":33,\n      \"abv\":5.4,\n      \"flavors\":[\"biscuity\"],\n      \"lastTappedOn\":\"2016-01-23T00:00:00Z\",\n      \"breweryId\":\"b3TplPdS\",\n      \"breweryName\":\"Northern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"2\",\n      \"name\":\"Agogwe Ale\",\n      \"activelyBrewed\":true,\n      \"ibu\":28,\n      \"abv\":3.9,\n      \"flavors\":[\"wheat\", \"floral\"],\n      \"lastTappedOn\":\"2016-05-18T00:00:00Z\",\n      \"breweryId\":\"Ek4mwsBoe\",\n      \"breweryName\":\"Southern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.149979, 39.923429] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"3\",\n      \"name\":\"Aswang Ale\",\n      \"activelyBrewed\":true,\n      \"ibu\":31,\n      \"abv\":4.2,\n      \"flavors\":[\"butter\", \"yeast\"],\n      \"lastTappedOn\":\"2016-02-13T00:00:00Z\",\n      \"breweryId\":\"b3TplPdS\",\n      \"breweryName\":\"Northern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"4\",\n      \"name\":\"Buru's Barley Wine\",\n      \"activelyBrewed\":true,\n      \"ibu\":76,\n      \"abv\":11.1,\n      \"flavors\":[\"raisin\", \"dried fruit\", \"bourbon\"],\n      \"lastTappedOn\":\"2016-01-01T00:00:00Z\",\n      \"breweryId\":\"b3TplPdS\",\n      \"breweryName\":\"Northern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"7\",\n      \"name\":\"Hyote Chocolate Stout\",\n      \"activelyBrewed\":true,\n      \"ibu\":78,\n      \"abv\":7.4,\n      \"flavors\":[\"caramel\", \"chocolate\"],\n      \"lastTappedOn\":\"2016-01-07T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"8\",\n      \"name\":\"Igopogo Pilsner\",\n      \"activelyBrewed\":true,\n      \"ibu\":36,\n      \"abv\":5.7,\n      \"flavors\":[\"malt\", \"bread\"],\n      \"lastTappedOn\":\"2015-11-15T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"9\",\n      \"name\":\"Jackalobe Lager\",\n      \"activelyBrewed\":true,\n      \"ibu\":29,\n      \"abv\":3.3,\n      \"flavors\":[\"fruit\", \"citrus\"],\n      \"lastTappedOn\":\"2016-03-15T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"11\",\n      \"name\":\"Mahamba Barley Wine\",\n      \"activelyBrewed\":true,\n      \"ibu\":57,\n      \"abv\":9.7,\n      \"flavors\":[\"malt\", \"raisin\"],\n      \"lastTappedOn\":\"2016-04-24T00:00:00Z\",\n      \"breweryId\":\"Ek4mwsBoe\",\n      \"breweryName\":\"Southern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.149979, 39.923429] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"12\",\n      \"name\":\"Megalodon Pale Ale\",\n      \"activelyBrewed\":true,\n      \"ibu\":99,\n      \"abv\":5.7,\n      \"flavors\":[\"bread\", \"hops\", \"pine\"],\n      \"lastTappedOn\":\"2016-03-31T00:00:00Z\",\n      \"breweryId\":\"VkNvPjBse\",\n      \"breweryName\":\"Oceanic Brewco\",\n      \"breweryLocation\": null\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"26\",\n      \"name\":\"Pale Popobawa Ale\",\n      \"activelyBrewed\":true,\n      \"ibu\":30,\n      \"abv\":4.4,\n      \"flavors\":[\"wheat\"],\n      \"lastTappedOn\":\"2016-05-09T00:00:00Z\",\n      \"breweryId\":\"Ek4mwsBoe\",\n      \"breweryName\":\"Southern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.149979, 39.923429] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"16\",\n      \"name\":\"Pope Lick Porter\",\n      \"activelyBrewed\":true,\n      \"ibu\":39,\n      \"abv\":6.5,\n      \"flavors\":[\"smokey\", \"chocolate\", \"banana\" ],\n      \"lastTappedOn\":\"2016-01-06T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"17\",\n      \"name\":\"Chocolate Pukwudgie Stout\",\n      \"activelyBrewed\":true,\n      \"ibu\":35,\n      \"abv\":12.2,\n      \"flavors\":[\"chocolate\", \"coffee\" ],\n      \"lastTappedOn\":\"2016-02-25T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"18\",\n      \"name\":\"Sharlie Pilsner\",\n      \"activelyBrewed\":true,\n      \"ibu\":31,\n      \"abv\":4.1,\n      \"flavors\":[\"grass\" ],\n      \"lastTappedOn\":\"2016-02-18T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"19\",\n      \"name\":\"Sigbin Stout\",\n      \"activelyBrewed\":false,\n      \"ibu\":65,\n      \"abv\":8.1,\n      \"flavors\":[\"coffee\", \"caramel\" ],\n      \"lastTappedOn\":\"2016-03-18T00:00:00Z\",\n      \"breweryId\":\"b3TplPdS\",\n      \"breweryName\":\"Northern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"21\",\n      \"name\":\"Snallygaster Pale Ale\",\n      \"activelyBrewed\":false,\n      \"ibu\":89,\n      \"abv\":9.7,\n      \"flavors\":[\"pine\", \"honey\" ],\n      \"lastTappedOn\":\"2016-04-29T00:00:00Z\",\n      \"breweryId\":\"zkXBTiBol\",\n      \"breweryName\":\"North American Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    { \n      \"@search.action\": \"upload\",\n      \"id\":\"22\",\n      \"name\":\"Tikibalang Barley Wine\",\n      \"activelyBrewed\":true,\n      \"ibu\":45,\n      \"abv\":9.6,\n      \"flavors\":[\"bourbon\"],\n      \"lastTappedOn\":\"2016-03-14T00:00:00Z\",\n      \"breweryId\":\"b3TplPdS\",\n      \"breweryName\":\"Northern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.055565, 39.899728] }\n    },\n    {\n      \"@search.action\":\"upload\",\n      \"id\":\"27\",\n      \"name\":\"North Adjule Lager\",\n      \"activelyBrewed\":true,\n      \"ibu\":30,\n      \"abv\":3.7,\n      \"flavors\":[\"citrus\"],\n      \"lastTappedOn\":\"2016-02-08T00:00:00Z\",\n      \"breweryId\":\"Ek4mwsBoe\",\n      \"breweryName\":\"Southern Hemisphere Brewco\",\n      \"breweryLocation\": { \"type\": \"Point\", \"coordinates\": [-86.149979, 39.923429] }\n    }\n  ]\n}\n"
+						},
+						"description": "This request will populate the beers search index. This should only be used after creating the beers search index in module 1\n\nNOTE: You will need to change the URL and the `api-key` header parameter to reference your search service. The values used in this request were used to verify content in the course during development. The keys have intentionally been regenerated for security purposes."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

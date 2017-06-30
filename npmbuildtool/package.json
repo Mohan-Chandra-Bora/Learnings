@@ -1,0 +1,19 @@
+{
+  "name": "npmbuildtool",
+  "version": "1.0.0",
+  "description": "This is to start my npm adventure",
+  "main": "index.js",
+  "scripts": {
+    "test": " mocha test -u bdd -R spec",
+    "start": "echo \"Running start script\"",
+    "stop": "echo \"Running stop script\"",
+    "restart": "echo \"Running restart script\"",
+    "start:dev": "echo \"Running start:dev script\""
+  },
+  "author": "Mohan-Chandra-Bora",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^3.2.0",
+    "should": "^11.2.0"
+  }
+}

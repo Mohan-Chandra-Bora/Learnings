@@ -1,0 +1,16 @@
+{
+  "name": "fabex-playground",
+  "version": "1.0.0",
+  "description": "Provides ability to explore Office UI Fabric classes and styles",
+  "main": "FabricPlayground.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sector 43 Software",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-open": "^2.0.0"
+  }
+}
